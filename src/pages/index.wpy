@@ -19,7 +19,8 @@
 <template>
   <view class="container">
     <view class="userinfo" @tap="handleViewTap">
-      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" 
+      background-size="cover"/>
       <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
     </view>
 
@@ -50,25 +51,25 @@
     </panel>
 
     <panel>
-      <view class="title" slot="title">点一下我们就看到</view>
+      <view class="title" slot="title">点一下测试toast方法</view>
 
       <wxc-toast class="J_toast" text="Hello World"></wxc-toast>
       <button bindtap="showToast" size="mini">调用 show() 方法显示</button>
 
+    </panel>
 
-
-
-      <!-- <view class="title" slot="title">测试组件</view>
+    <panel>
+      <view class="title" slot="title">测试组件</view>
 
       <text class="testcounter">计数组件1: </text>
       <view class="counterview">
-        <counter1 @index-emit.user="counterEmit" />
+        <counter1 @index-emit.user="counterEmit" ></counter1>
       </view>
 
       <text class="testcounter">计数组件2: </text>
       <view class="counterview">
         <counter2 :num.sync="mynum"></counter2>
-      </view> -->
+      </view>
     </panel>
 
     <panel>
@@ -114,7 +115,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'test',
+      navigationBarTitleText: '首页',
       usingComponents: {
         'wxc-toast': '../../packages/@minui/wxc-toast/dist/index'
       }
@@ -188,6 +189,9 @@
     computed = {
       now () {
         return +new Date()
+      },
+      doubleMyNumer () {
+        return this.mynum * 2
       }
     }
 
@@ -255,9 +259,9 @@
         if (userInfo) {
           self.userInfo = userInfo
         }
-        self.normalTitle = 'Done!!!'
+        self.normalTitle = '正常的标题'
 
-        self.setTimeoutTitle = '---will'
+        self.setTimeoutTitle = '时间到期的标题'
         setTimeout(() => {
           self.setTimeoutTitle = '到三秒了'
           self.$apply()
